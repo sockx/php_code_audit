@@ -1,0 +1,27 @@
+version: "3"
+services:
+  php:
+    image: dphp:7.2
+    volumes:
+      - ./app/DVWA-2.1:/app
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  web:
+    image: caddy
+    ports:
+      - 80:80
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./app/DVWA-2.1:/app
+
+  mysql:
+    image: mysql:5.7
+    # ports:
+    #   - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Shanghai
+    volumes:
+      - ./database:/var/lib/mysql
+

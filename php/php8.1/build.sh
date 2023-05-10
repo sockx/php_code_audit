@@ -1,0 +1,1 @@
+docker build . -t dphp:8.1

@@ -1,0 +1,11 @@
+:80 {
+    # 指定此项目在webservice的工作目录
+    root * /app
+    php_fastcgi * php:9000 {
+        # 指定phpfpm的工作目录
+        root /app
+        # index /index.php
+    }
+    encode gzip zstd
+    file_server
+}
